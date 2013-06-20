@@ -146,8 +146,8 @@ public class CreationProduitDAO {
          * Id stock produit (doit se generer)
          * id Fournisseur (doit etre recuperer avec la liste deroulante)
          * id utilisateur (doit etre recuperer dans la session)
-         *id produit (est recuperer dans l'objet Produit creer juste avant)
-         *qte produit (recuperer dans les paramtres de la requête)
+         * id produit (est recuperer dans l'objet Produit creer juste avant)
+         * qte produit (recuperer dans les paramtres de la requête)
          */
         
         //Generation de l'id stock produit
@@ -178,7 +178,7 @@ public class CreationProduitDAO {
         }
         
         
-        
+        //
         Stockproduit sp = new Stockproduit();
         sp.setFournisseur( fournisseur );
         sp.setIdStockProduit( idMaxStock );
@@ -192,7 +192,7 @@ public class CreationProduitDAO {
         tx = session.beginTransaction();
 
         try {
-            //Enregistrement du client
+            //Enregistrement du stockProduit
             session.saveOrUpdate( sp );
             session.flush();
             tx.commit();

@@ -29,6 +29,11 @@ public class CreationProduitServlet extends HttpServlet {
 
 
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
+        
+        /**
+         * Ici on se place dans la méthode doGet car c'est lorsque l'on arrive par le menu
+         * On recupere une liste de fournisseur pour afficher leur nom dans un menu déroulant
+         */
         FournisseurDAO fDAO = new FournisseurDAO();
 
         try {
@@ -51,6 +56,8 @@ public class CreationProduitServlet extends HttpServlet {
 
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 
+        
+        
         FormulaireCreationProduit formulaireCreationProduit = new FormulaireCreationProduit();
         CreationProduit creationProduit = null;
         try {
@@ -63,11 +70,7 @@ public class CreationProduitServlet extends HttpServlet {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
-       
-        
-    
-       
+
 
         // Renvoie a la jsp creationClient.jsp
         request.setAttribute( "creationProduit", creationProduit );
