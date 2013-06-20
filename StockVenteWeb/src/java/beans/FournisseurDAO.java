@@ -1,4 +1,4 @@
-package beans;
+package projetTest.beans;
 
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ public class FournisseurDAO {
             try {
 
                 /*
-                 * Recuperation dans une liste des donï¿½es contenue dans la table
+                 * Recuperation dans une liste des donŽes contenue dans la table
                  * eleve
                  */
                 tx = session.beginTransaction();
@@ -34,13 +34,7 @@ public class FournisseurDAO {
 
                 session.getTransaction().commit();
 
-                for ( int i = 0; i < result.size(); i++ ) {
 
-                    Fournisseur nvx = (Fournisseur) result.get( i );
-
-                    System.out.println( nvx.getNomFournisseur() + " " + nvx.getIdFournisseur() );
-
-                }
             } catch ( Exception e ) {
                 if ( tx != null ) {
                     System.out.println( "Erreur" );
@@ -56,4 +50,35 @@ public class FournisseurDAO {
             
         }
 
+        public Fournisseur rechercherFournisseur( String nomFournisseur) throws Exception{
+            
+            Session session = sessionsFactory.openSession();
+            Transaction tx = null;
+            Fournisseur fournisseur = new Fournisseur();
+            
+            
+        
+            try {
+
+                /*
+                 * Recuperation d'un fournisseur par son nom
+                 */
+                tx = session.beginTransaction();
+
+                 fournisseur = (Fournisseur) session.createQuery( " from Fournisseur where nom_Fournisseur ='"+nomFournisseur+"'" ).uniqueResult();
+
+                session.getTransaction().commit();
+
+            } catch ( Exception e ) {
+                if ( tx != null ) {
+                    System.out.println( "Erreur" );
+                    tx.rollback();
+                }
+                throw e;
+            } finally {
+                session.close();
+            }
+            return fournisseur;
+            
+        }
 }

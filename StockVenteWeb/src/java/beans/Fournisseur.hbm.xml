@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 25 mai 2013 15:25:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-  <class name="beans.Fournisseur" table="fournisseur">
-    <id name="idFournisseur" type="int">
-      <column name="id_fournisseur"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="nomFournisseur" type="string">
-      <column length="128" name="nom_fournisseur"/>
-    </property>
-    <property name="coordonnees" type="string">
-      <column length="128" name="coordonnees"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="stockproduits" table="stockproduit">
-      <key>
-        <column name="id_fournisseur" not-null="true"/>
-      </key>
-      <one-to-many class="beans.Stockproduit"/>
-    </set>
-  </class>
+    <class name="projetTest.beans.Fournisseur" table="fournisseur">
+        <id name="idFournisseur" type="int">
+            <column name="id_fournisseur" />
+            <generator class="assigned" />
+        </id>
+        <property name="nomFournisseur" type="string">
+            <column name="nom_fournisseur" length="128" />
+        </property>
+        <property name="coordonnees" type="string">
+            <column name="coordonnees" length="128" />
+        </property>
+        <set name="stockproduits" table="stockproduit" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_fournisseur" not-null="true" />
+            </key>
+            <one-to-many class="projetTest.beans.Stockproduit" />
+        </set>
+    </class>
 </hibernate-mapping>

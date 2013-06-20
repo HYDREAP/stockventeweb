@@ -1,4 +1,4 @@
-package beans;
+package projetTest.beans;
 
 // Generated 25 mai 2013 15:25:22 by Hibernate Tools 3.4.0.CR1
 

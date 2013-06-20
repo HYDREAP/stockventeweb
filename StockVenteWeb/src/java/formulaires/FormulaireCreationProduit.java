@@ -1,4 +1,4 @@
-package formulaires;
+package projetTest.formulaires;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -7,10 +7,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import beans.CreationProduit;
-import beans.CreationProduitDAO;
+import projetTest.beans.CreationProduit;
+import projetTest.beans.CreationProduitDAO;
+import projetTest.beans.Fournisseur;
+import projetTest.beans.FournisseurDAO;
+import projetTest.beans.Utilisateur;
 
 public class FormulaireCreationProduit {
 
@@ -23,11 +28,12 @@ public class FormulaireCreationProduit {
     private final static String CHAMP_PRIX            = "valeurPrix";
     private final static String CHAMP_QUANTITE        = "qteProduitStocke";
     private final static String CHAMP_NOM_FOURNISSEUR = "nomFournisseur";
+    private final static String LISTE_DEROULANTE    =   "listeDeroulante";
 
     private String              resultat;
     private Map<String, String> erreurs               = new HashMap<String, String>();
 
-    public CreationProduit creerProduit( HttpServletRequest request ) throws ParseException {
+    public CreationProduit creerProduit( HttpServletRequest request ) throws Exception {
 
         String nomProduit = getValeurChamp( request, CHAMP_NOM_PRODUIT );
         String garantie = getValeurChamp( request, CHAMP_GARANTIE );
@@ -36,11 +42,14 @@ public class FormulaireCreationProduit {
         String prix = getValeurChamp( request, CHAMP_PRIX );
         String nomFournisseur = getValeurChamp( request, CHAMP_NOM_FOURNISSEUR );
         String quantite = getValeurChamp( request, CHAMP_QUANTITE );
+        String liste = request.getParameter( LISTE_DEROULANTE );
+        Utilisateur user  = (Utilisateur) request.getSession().getAttribute( "sessionUtilisateur" );
+        
         
         CreationProduit creationProduit = new CreationProduit();
         
         /**
-         * On test les diffÔøΩrents ÔøΩlÔøΩments saisies Une fois vÔøΩrifier on les
+         * On test les différents éléments saisies Une fois vérifier on les
          * enregistre dans le Bean Client
          */
 
@@ -81,13 +90,7 @@ public class FormulaireCreationProduit {
         creationProduit.setQteProduitStocke( Integer.parseInt( quantite ) );
         
 
-        // Teste le nom fournisseur
-        try {
-            validationNom( nomFournisseur );
-
-        } catch ( Exception e ) {
-            setErreur( CHAMP_NOM_FOURNISSEUR, e.getMessage() );
-        }
+        
         
         creationProduit.setNomFournisseur( nomFournisseur );
         
@@ -108,14 +111,26 @@ public class FormulaireCreationProduit {
     }
         
         /**
-         * Si aucune erreur n'est enregistrÔøΩ dans la map erreurs,
-         * alors on fait appel ÔøΩ la mÔøΩthode creerClient() de la classe ClientDAO
-         * Et on place en arguments tous les ÔøΩlÔøΩments rÔøΩcupÔøΩrÔøΩ et vÔøΩrifiÔøΩ
+         * Il faut envoyer un fournisseur donc ce servir du DAOFournisseur pourrecuperer l'objet 
+         */
+        FournisseurDAO fdao = new FournisseurDAO();
+        Fournisseur fournisseur = new Fournisseur();
+        fournisseur = fdao.rechercherFournisseur( liste );
+        
+        /* Récupération de la session depuis la requête */
+        HttpSession session = request.getSession();
+        Utilisateur user1 = (Utilisateur) session.getAttribute( "sessionUtilisateur" );
+     
+        
+        /**
+         * Si aucune erreur n'est enregistré dans la map erreurs,
+         * alors on fait appel à la méthode creerClient() de la classe ClientDAO
+         * Et on place en arguments tous les éléments récupéré et vérifié
          */
         if ( erreurs.isEmpty() ) {
             CreationProduitDAO creationProduitDAO = new CreationProduitDAO();
             try {
-                creationProduitDAO.creerProduit( nomProduit, garantie, validationDate(dateDebut), validationDate(dateFin), Double.parseDouble( prix ), Integer.parseInt( quantite ), nomFournisseur );
+                creationProduitDAO.creerProduit( nomProduit, garantie, validationDate(dateDebut), validationDate(dateFin), Double.parseDouble( prix ), Integer.parseInt( quantite ), fournisseur, user1 );
             } catch ( Exception e ) {
                 System.out
                         .println( "erreur Classe FormualireCreationCLient lors de l'insertion d'un nvx client dans la base" );
@@ -128,7 +143,7 @@ public class FormulaireCreationProduit {
     }
 
     /*************************************************************************************
-     * MÔøΩthodes permettant la validation des ÔøΩlÔøΩments recuperÔøΩs
+     * Méthodes permettant la validation des éléments recuperés
      * 
      *************************************************************************************/
 
@@ -188,7 +203,7 @@ public class FormulaireCreationProduit {
        }
    }
    
-   //Teste de la quantitÔøΩe saisie
+   //Teste de la quantitée saisie
    private void validationQuantite (String quantite) throws Exception{
        if (quantite == null){
            throw new Exception( "Merci de saisir un prix" );
@@ -212,7 +227,7 @@ public class FormulaireCreationProduit {
         return erreurs;
     }
 
-    // Ajoute un message correspondant au champ spÔøΩcifiÔøΩ ÔøΩ la map des erreurs.
+    // Ajoute un message correspondant au champ spécifié à la map des erreurs.
     private void setErreur( String champ, String message ) {
         erreurs.put( champ, message );
     }

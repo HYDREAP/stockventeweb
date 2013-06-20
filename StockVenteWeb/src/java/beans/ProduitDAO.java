@@ -1,4 +1,4 @@
-package beans;
+package projetTest.beans;
 
 // Generated 25 mai 2013 15:25:22 by Hibernate Tools 3.4.0.CR1
 
@@ -34,15 +34,15 @@ public class ProduitDAO {
             tx = session.beginTransaction();
 
             /**
-             * Premiï¿½re requï¿½te qui recupere dans la table le produit qui a l'id
+             * Premire requte qui recupere dans la table le produit qui a l'id
              * souhaiter puis insertion dans une liste de type Produit
              */
             result = (ArrayList<Produit>) session.createQuery( "from Produit as pp" +
                     " where pp.idProduit = '" + id + "'" ).list();
 
             /**
-             * Au travers d'une boucle, on parcours cette liste pour rï¿½cupï¿½rer
-             * les diffï¿½rents ï¿½lï¿½ments dont on a besoin pour l'affichage dans la
+             * Au travers d'une boucle, on parcours cette liste pour rcuprer
+             * les diffrents lments dont on a besoin pour l'affichage dans la
              * JSP
              */
             for ( int i = 0; i < result.size(); i++ ) {
@@ -50,7 +50,7 @@ public class ProduitDAO {
                 Produit produit = result.get( i );
 
                 /**
-                 * Seconde requï¿½te qui recupere le Prix du produit dans la table
+                 * Seconde requte qui recupere le Prix du produit dans la table
                  * prixProduit en fonction de l'id puis insertions du resultat
                  * dans une liste de type PrixProduit
                  */
@@ -61,7 +61,7 @@ public class ProduitDAO {
                 Stockproduit sp = null;
 
                 /**
-                 * Derniï¿½re requï¿½te qui rï¿½cupï¿½re la quantitï¿½ en stock du produit
+                 * Dernire requte qui rcupre la quantit en stock du produit
                  * puis insertion dans une liste de type StockProduit
                  */
                 result2 = (ArrayList<Stockproduit>) session.createQuery( "from Stockproduit as stock" +
@@ -69,16 +69,16 @@ public class ProduitDAO {
 
                 /**
                  * Comme il est possible qu'un produit ai plusieurs prix
-                 * (diffï¿½rent stock, diffï¿½rente date), on a besoin d'une
-                 * nouvelle boucle Pour qu'a chaque prix l'on puisse rï¿½cupï¿½rer
-                 * les quantitï¿½e restante en stock
+                 * (diffrent stock, diffrente date), on a besoin d'une
+                 * nouvelle boucle Pour qu'a chaque prix l'on puisse rcuprer
+                 * les quantite restante en stock
                  */
                 for ( int j = 0; j < result2.size(); j++ ) {
                     sp = result2.get( j );
 
                     /**
                      * Creation du Bean RechercheBean et attribution des
-                     * diffï¿½rentes valeurs dont on a besoin pour la partie VUE
+                     * diffrentes valeurs dont on a besoin pour la partie VUE
                      */
                     recherche = new RechercheBean();
                     recherche.setNomProduit( produit.getNomProduit() );
@@ -88,7 +88,7 @@ public class ProduitDAO {
 
                     /**
                      * On introduit chaque Bean RechercheBean dans une liste de
-                     * type RechercheBean qui vas finalement ï¿½tre renvoyï¿½ avec
+                     * type RechercheBean qui vas finalement tre renvoy avec
                      * le return
                      */
                     listeFinal.add( recherche );
@@ -131,8 +131,8 @@ public class ProduitDAO {
                     " where pp.nomProduit = '" + nom + "'" ).list();
 
             /**
-             * Au travers d'une boucle, on parcours cette liste pour rï¿½cupï¿½rer
-             * les diffï¿½rents ï¿½lï¿½ments dont on a besoin pour l'affichage dans la
+             * Au travers d'une boucle, on parcours cette liste pour rcuprer
+             * les diffrents lments dont on a besoin pour l'affichage dans la
              * JSP
              */
             for ( int i = 0; i < result.size(); i++ ) {
@@ -141,15 +141,15 @@ public class ProduitDAO {
 
                 /**
                  * Recuperation du prix dans la table PrixProduit et creation
-                 * d'un liste de mï¿½me type
+                 * d'un liste de mme type
                  */
                 result1 = (ArrayList<Prixproduit>) session.createQuery( "from Prixproduit as pproduit" +
                         " where pproduit.produit.idProduit = " + produit.getIdProduit() ).list();
                 Prixproduit pp = result1.get( 0 );
 
                 /**
-                 * Recuperation de la quantitï¿½e en stock dans la table
-                 * StockProduit et creation d'une liste de mï¿½me type
+                 * Recuperation de la quantite en stock dans la table
+                 * StockProduit et creation d'une liste de mme type
                  */
                 Stockproduit sp = null;
                 result2 = (ArrayList<Stockproduit>) session.createQuery( "from Stockproduit as stock" +
@@ -158,14 +158,14 @@ public class ProduitDAO {
                 /**
                  * Un produit pouvant avoir plusieurs prix en fonction du stock
                  * d'ou il provient, il faut refaire une boucle pour recuperer
-                 * la quantitï¿½e de chaque stock
+                 * la quantite de chaque stock
                  */
                 for ( int j = 0; j < result2.size(); j++ ) {
                     sp = result2.get( j );
 
                     /**
                      * On introduit chaque Bean RechercheBean dans une liste de
-                     * type RechercheBean qui vas finalement ï¿½tre renvoyï¿½ avec
+                     * type RechercheBean qui vas finalement tre renvoy avec
                      * le return
                      */
                     recherche = new RechercheBean();
@@ -206,13 +206,13 @@ public class ProduitDAO {
             tx = session.beginTransaction();
 
             /**
-             * Recuperation de tous les ï¿½lï¿½ments de la table Produit
+             * Recuperation de tous les lments de la table Produit
              */
             result = (ArrayList<Produit>) session.createQuery( "from Produit " ).list();
 
             /**
-             * Au travers d'une boucle, on parcours cette liste pour rï¿½cupï¿½rer
-             * les diffï¿½rents ï¿½lï¿½ments dont on a besoin pour l'affichage dans la
+             * Au travers d'une boucle, on parcours cette liste pour rcuprer
+             * les diffrents lments dont on a besoin pour l'affichage dans la
              * JSP
              */
             for ( int i = 0; i < result.size(); i++ ) {
@@ -221,14 +221,14 @@ public class ProduitDAO {
 
                 /**
                  * Recuperation du prix produit et insertion dans une liste de
-                 * mï¿½me type
+                 * mme type
                  */
                 result1 = (ArrayList<Prixproduit>) session.createQuery( "from Prixproduit as pproduit" +
                         " where pproduit.produit.idProduit = " + produit.getIdProduit() ).list();
                 Prixproduit pp = result1.get( 0 );
 
                 /**
-                 * Recuperation de la quantitï¿½e en stock
+                 * Recuperation de la quantite en stock
                  */
                 Stockproduit sp = null;
                 result2 = (ArrayList<Stockproduit>) session.createQuery( "from Stockproduit as stock" +
@@ -237,14 +237,14 @@ public class ProduitDAO {
                 /**
                  * Un produit pouvant avoir plusieurs prix en fonction du stock
                  * d'ou il provient, il faut refaire une boucle pour recuperer
-                 * la quantitï¿½e de chaque stock
+                 * la quantite de chaque stock
                  */
                 for ( int j = 0; j < result2.size(); j++ ) {
                     sp = result2.get( j );
 
                     /**
                      * On introduit chaque Bean RechercheBean dans une liste de
-                     * type RechercheBean qui vas finalement ï¿½tre renvoyï¿½ avec
+                     * type RechercheBean qui vas finalement tre renvoy avec
                      * le return
                      */
                     recherche = new RechercheBean();

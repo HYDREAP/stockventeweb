@@ -51,21 +51,21 @@
 		value="" size="20" maxlength="20" />
 	<span class="erreur"></span>
 	<br />
-	
-	<label for="nomFournisseur">Nom du fournisseur <span class="requis">*</span></label>
-	<input type="text" id="nomFournisseur" name="nomFournisseur"
-		value="" size="20" maxlength="20" />
-	<span class="erreur"></span>
-	<br />
+	<br/>
 	
 	
-	Fournisseur <SELECT name="critere" size="1">
-	<c:forEach items="${ listeFournisseur }" var="liste" varStatus="boucle">
-					<OPTION>${listeFournisseur.nomFournisseur }
-						</c:forEach>
+ 
+	Fournisseur :  <select id="listeDeroulante" name="listeDeroulante">
+	
+	 <c:forEach items="${liste}" var="liste">
+       		<option   > ${liste.nomFournisseur } </option>
+
+    </c:forEach>
 					
-				</SELECT>
-	
+						
+			</select>		
+		</br>
+		</br>		
 
 	<p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
 </body>

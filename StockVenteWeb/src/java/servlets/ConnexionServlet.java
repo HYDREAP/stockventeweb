@@ -1,4 +1,4 @@
-package servlets;
+package projetTest.servlets;
 
 import java.io.IOException;
 
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Utilisateur;
-import formulaires.FormulaireConnexion;
+import projetTest.beans.Utilisateur;
+import projetTest.formulaires.FormulaireConnexion;
 
 
 
@@ -32,24 +32,29 @@ public class ConnexionServlet extends HttpServlet {
         FormulaireConnexion formulaireConnexion = new FormulaireConnexion();
 
         /*
-         * Creation du bean utilisateur avec les donnÔøΩes retournÔøΩes par la
+         * Creation du bean utilisateur avec les données retournées par la
          * methode connecterUtilisateur de l'objet formulaireConnexion
          */
         Utilisateur utilisateur = formulaireConnexion.connecterUtilisateur( request );
         
-        /* RÔøΩcupÔøΩration de la session depuis la requÔøΩte */
+        /* Récupération de la session depuis la requête */
         HttpSession session = request.getSession();
 
         // Si le formulaire ne retourne aucune erreur
         if ( formulaireConnexion.getErreurs().isEmpty() ) {
 
+            
             session.setAttribute( ATT_SESSION_USER, utilisateur );
-            // Mise en paramÔøΩtre du Bean utilisateur dans la reqÔøΩete
+            // Mise en paramètre du Bean utilisateur dans la reqûete
+            
+            
+            
+            
             request.setAttribute( ATT_UTILISATEUR, utilisateur );
             this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
         }
 
-        /*Si des erreurs sont presente on soumet ÔøΩ nouveau la page d'authentification avec les
+        /*Si des erreurs sont presente on soumet à nouveau la page d'authentification avec les
          * erreurs presente dans le formualireConnexion
          */
         else

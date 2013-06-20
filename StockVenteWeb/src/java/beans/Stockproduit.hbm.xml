@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 25 mai 2013 15:25:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-  <class name="beans.Stockproduit" table="stockproduit">
-    <id name="idStockProduit" type="int">
-      <column name="id_stock_produit"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="beans.Fournisseur" fetch="select" name="fournisseur">
-      <column name="id_fournisseur" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="beans.Utilisateur" fetch="select" name="utilisateur">
-      <column name="id_user" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="beans.Produit" fetch="select" name="produit">
-      <column name="id_produit" not-null="true"/>
-    </many-to-one>
-    <property name="qteProduitStocke" type="java.lang.Integer">
-      <column name="qte_produit_stocke"/>
-    </property>
-  </class>
+    <class name="projetTest.beans.Stockproduit" table="stockproduit">
+        <id name="idStockProduit" type="int">
+            <column name="id_stock_produit" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="fournisseur" class="projetTest.beans.Fournisseur" fetch="select">
+            <column name="id_fournisseur" not-null="true" />
+        </many-to-one>
+        <many-to-one name="utilisateur" class="projetTest.beans.Utilisateur" fetch="select">
+            <column name="id_user" not-null="true" />
+        </many-to-one>
+        <many-to-one name="produit" class="projetTest.beans.Produit" fetch="select">
+            <column name="id_produit" not-null="true" />
+        </many-to-one>
+        <property name="qteProduitStocke" type="java.lang.Integer">
+            <column name="qte_produit_stocke" />
+        </property>
+    </class>
 </hibernate-mapping>

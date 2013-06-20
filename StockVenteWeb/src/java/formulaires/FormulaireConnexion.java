@@ -1,12 +1,12 @@
-package formulaires;
+package projetTest.formulaires;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import beans.Utilisateur;
-import beans.UtilisateurDAO;
+import projetTest.beans.Utilisateur;
+import projetTest.beans.UtilisateurDAO;
 
 
 
@@ -24,13 +24,15 @@ public class FormulaireConnexion {
         // passe
         String login = getValeurChamp( request, CHAMP_LOGIN );
         String mdpUser = getValeurChamp( request, CHAMP_MDP );
+        
+        
 
         // Creation du Bean utilisateur
         Utilisateur utilisateur = new Utilisateur();
 
-        // Teste la validitÔøΩ de l'adresse mail saisie
+        // Teste la validité de l'adresse mail saisie
         try {
-            validationLogin( login , mdpUser);
+            utilisateur = validationLogin( login , mdpUser);
                 
 
 
@@ -38,8 +40,6 @@ public class FormulaireConnexion {
             setErreur( CHAMP_LOGIN, "Utilisateur inconnue" );
         }
        
-        utilisateur.setLoginUser( login );
-        utilisateur.setMdpUser( mdpUser );
 
        
         return utilisateur;
@@ -64,7 +64,7 @@ public class FormulaireConnexion {
         }
     }
 
-    // Teste le mot de passe saisie (superieur a 3 caractÔøΩres
+    // Teste le mot de passe saisie (superieur a 3 caractères
     private void validationMDP( String mdp ) throws Exception {
         if ( mdp == null || mdp.length() < 3 )
         {
@@ -74,15 +74,17 @@ public class FormulaireConnexion {
     }
     
  // verifie la presence du login et du mdp dans la BDD
-    private void validationLogin( String login, String mdp ) throws Exception {
+    private Utilisateur validationLogin( String login, String mdp ) throws Exception {
+        
         
         UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
-        utilisateurDAO.verificationLoginMdp( login, mdp );
-        System.out.println(utilisateurDAO.toString());
+        Utilisateur user = utilisateurDAO.verificationLoginMdp( login, mdp );
+        
         if (utilisateurDAO.i == 0){
            
             throw new Exception( "Erreur" );
         }
+        return user;
 
     }
 
@@ -97,7 +99,7 @@ public class FormulaireConnexion {
         return erreurs;
     }
 
-    // Ajoute un message correspondant au champ spÔøΩcifiÔøΩ ÔøΩ la map des erreurs.
+    // Ajoute un message correspondant au champ spécifié à la map des erreurs.
     private void setErreur( String champ, String message ) {
         erreurs.put( champ, message );
     }

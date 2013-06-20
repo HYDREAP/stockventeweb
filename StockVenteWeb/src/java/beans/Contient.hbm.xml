@@ -1,24 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 25 mai 2013 15:25:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-  <class name="beans.Contient" table="contient">
-    <composite-id class="beans.ContientId" name="id">
-      <key-property name="idFacture" type="int">
-        <column name="id_facture"/>
-      </key-property>
-      <key-property name="idProduit" type="int">
-        <column name="id_produit"/>
-      </key-property>
-    </composite-id>
-    <many-to-one class="beans.Produit" fetch="select" insert="false" name="produit" update="false">
-      <column name="id_produit" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="beans.Facture" fetch="select" insert="false" name="facture" update="false">
-      <column name="id_facture" not-null="true"/>
-    </many-to-one>
-    <property name="qteProduitFacturee" type="string">
-      <column length="32" name="qte_produit_facturee"/>
-    </property>
-  </class>
+    <class name="projetTest.beans.Contient" table="contient">
+        <composite-id name="id" class="projetTest.beans.ContientId">
+            <key-property name="idFacture" type="int">
+                <column name="id_facture" />
+            </key-property>
+            <key-property name="idProduit" type="int">
+                <column name="id_produit" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="produit" class="projetTest.beans.Produit" update="false" insert="false" fetch="select">
+            <column name="id_produit" not-null="true" />
+        </many-to-one>
+        <many-to-one name="facture" class="projetTest.beans.Facture" update="false" insert="false" fetch="select">
+            <column name="id_facture" not-null="true" />
+        </many-to-one>
+        <property name="qteProduitFacturee" type="string">
+            <column name="qte_produit_facturee" length="32" />
+        </property>
+    </class>
 </hibernate-mapping>

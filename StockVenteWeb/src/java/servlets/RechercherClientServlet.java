@@ -1,4 +1,4 @@
-package servlets;
+package projetTest.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Client;
-import beans.RechercheBean;
-import formulaires.FormulaireRechercheClient;
+import projetTest.beans.Client;
+import projetTest.beans.RechercheBean;
+import projetTest.formulaires.FormulaireRechercheClient;
 
 public class RechercherClientServlet extends HttpServlet {
 
@@ -25,7 +25,7 @@ public class RechercherClientServlet extends HttpServlet {
 
         /**
          * Instanciation de la classe FormulaireRecherch Puis recuperation d'une
-         * liste contenant les ï¿½lï¿½ments de la recherche
+         * liste contenant les ŽlŽments de la recherche
          */
         FormulaireRechercheClient frc = new FormulaireRechercheClient();
         ArrayList<Client> liste = frc.rechercherClient( request );

@@ -1,38 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 25 mai 2013 15:25:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-  <class name="beans.Utilisateur" table="utilisateur">
-    <id name="idUser" type="int">
-      <column name="id_user"/>
-      <generator class="assigned"/>
-    </id>
-    <property name="nomUser" type="string">
-      <column length="128" name="nom_user"/>
-    </property>
-    <property name="prenomUser" type="string">
-      <column length="128" name="prenom_user"/>
-    </property>
-    <property name="fonctionUser" type="string">
-      <column length="128" name="fonction_user"/>
-    </property>
-    <property name="loginUser" type="string">
-      <column length="128" name="login_user"/>
-    </property>
-    <property name="mdpUser" type="string">
-      <column length="128" name="mdp_user"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="stockproduits" table="stockproduit">
-      <key>
-        <column name="id_user" not-null="true"/>
-      </key>
-      <one-to-many class="beans.Stockproduit"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="factures" table="facture">
-      <key>
-        <column name="id_user" not-null="true"/>
-      </key>
-      <one-to-many class="beans.Facture"/>
-    </set>
-  </class>
+    <class name="projetTest.beans.Utilisateur" table="utilisateur">
+        <id name="idUser" type="int">
+            <column name="id_user" />
+            <generator class="assigned" />
+        </id>
+        <property name="nomUser" type="string">
+            <column name="nom_user" length="128" />
+        </property>
+        <property name="prenomUser" type="string">
+            <column name="prenom_user" length="128" />
+        </property>
+        <property name="fonctionUser" type="string">
+            <column name="fonction_user" length="128" />
+        </property>
+        <property name="loginUser" type="string">
+            <column name="login_user" length="128" />
+        </property>
+        <property name="mdpUser" type="string">
+            <column name="mdp_user" length="128" />
+        </property>
+        <set name="stockproduits" table="stockproduit" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_user" not-null="true" />
+            </key>
+            <one-to-many class="projetTest.beans.Stockproduit" />
+        </set>
+        <set name="factures" table="facture" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_user" not-null="true" />
+            </key>
+            <one-to-many class="projetTest.beans.Facture" />
+        </set>
+    </class>
 </hibernate-mapping>

@@ -1,4 +1,4 @@
-package beans;
+package projetTest.beans;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -24,7 +24,7 @@ public class ClientDAO {
         try {
 
             /*
-             * Recuperation dans une liste des donï¿½es contenue dans la table
+             * Recuperation dans une liste des donŽes contenue dans la table
              * eleve
              */
             tx = session.beginTransaction();
@@ -60,7 +60,7 @@ public class ClientDAO {
         try {
 
             /*
-             * Recuperation dans une liste des donï¿½es contenue dans la table
+             * Recuperation dans une liste des donŽes contenue dans la table
              * eleve
              */
             tx = session.beginTransaction();
@@ -172,7 +172,7 @@ public class ClientDAO {
         try {
 
             /*
-             * Recuperation dans une liste des donï¿½es contenue dans la table
+             * Recuperation dans une liste des donŽes contenue dans la table
              * eleve
              */
             tx = session.beginTransaction();

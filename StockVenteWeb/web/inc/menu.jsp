@@ -18,7 +18,7 @@
 	
 		
 		<li><a href="creationClient.jsp" > Créer un client</a><br/></li>
-		<li><a href="creationProduit.jsp" > Créer un produit</a><br/></li>
+		<li><a href="creationProduit" > Créer un produit</a><br/></li>
 		<li><a href="<c:url value="" />"> Modifier/Supprimer un client</a><br/></li>	
 		<li><a href="rechercheProduit.jsp"> Rechercher produits</a><br/></li>
 		<li> <a href="rechercheClient.jsp">Rechercher un client</a><br/></li>

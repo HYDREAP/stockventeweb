@@ -1,12 +1,12 @@
-package formulaires;
+package projetTest.formulaires;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import beans.Client;
-import beans.ClientDAO;
+import projetTest.beans.Client;
+import projetTest.beans.ClientDAO;
 
 public class FormulaireCreationClient {
 
@@ -39,7 +39,7 @@ public class FormulaireCreationClient {
         Client client = new Client();
 
         /**
-         * On test les diffï¿½rents ï¿½lï¿½ments saisies Une fois vï¿½rifier on les
+         * On test les diffrents lments saisies Une fois vrifier on les
          * enregistre dans le Bean Client
          */
 
@@ -52,7 +52,7 @@ public class FormulaireCreationClient {
         }
         client.setNomClient( nom );
 
-        // Teste la validite du prenom saisie (minimum 1 caractï¿½re)
+        // Teste la validite du prenom saisie (minimum 1 caractre)
         try {
             validationNom( prenom );
 
@@ -61,7 +61,7 @@ public class FormulaireCreationClient {
         }
         client.setPrenomClient( prenom );
 
-        // Teste la validite de l' adresse saisie (minimum 9 caractï¿½re)
+        // Teste la validite de l' adresse saisie (minimum 9 caractre)
         try {
             validationAdresse( adresse );
 
@@ -70,7 +70,7 @@ public class FormulaireCreationClient {
         }
         client.setAdresseClient( adresse );
 
-        // Teste la validitï¿½ du code postale
+        // Teste la validit du code postale
         try {
             validationCP( cp );
 
@@ -79,7 +79,7 @@ public class FormulaireCreationClient {
         }
         client.setCpClient( Long.parseLong( cp ) );
 
-        // Teste la validitï¿½ de la ville
+        // Teste la validit de la ville
         try
         {
             validationVille( ville );
@@ -96,7 +96,7 @@ public class FormulaireCreationClient {
         }
         client.setTelClient( telephone );
 
-        // Teste la validitï¿½ de l'adresse mail saisie
+        // Teste la validit de l'adresse mail saisie
         try {
             validationEmail( email );
 
@@ -107,9 +107,9 @@ public class FormulaireCreationClient {
 
         
         /**
-         * Si aucune erreur n'est enregistrï¿½ dans la map erreurs,
-         * alors on fait appel ï¿½ la mï¿½thode creerClient() de la classe ClientDAO
-         * Et on place en arguments tous les ï¿½lï¿½ments rï¿½cupï¿½rï¿½ et vï¿½rifiï¿½
+         * Si aucune erreur n'est enregistr dans la map erreurs,
+         * alors on fait appel ˆ la mthode creerClient() de la classe ClientDAO
+         * Et on place en arguments tous les lments rcupr et vrifi
          */
         if ( erreurs.isEmpty() ) {
             ClientDAO clientDAO = new ClientDAO();
@@ -126,7 +126,7 @@ public class FormulaireCreationClient {
     }
 
     /*************************************************************************************
-     * Mï¿½thodes permettant la validation des ï¿½lï¿½ments recuperï¿½s
+     * Mthodes permettant la validation des lments recupers
      * 
      *************************************************************************************/
 
@@ -144,7 +144,7 @@ public class FormulaireCreationClient {
         }
     }
 
-    // Teste de l'adresse ( au moin 10 caractï¿½res )
+    // Teste de l'adresse ( au moin 10 caractres )
     private void validationAdresse( String adresse ) throws Exception {
         if ( adresse == null || adresse.length() < 9 ) {
             throw new Exception( "Merci de saisir votre adresse complete" );
@@ -165,7 +165,7 @@ public class FormulaireCreationClient {
         }
     }
 
-    // Teste la validitï¿½ du code postale
+    // Teste la validit du code postale
     private void validationCP( String cp ) throws Exception {
         if ( cp == null || cp.length() < 4 ) {
             throw new Exception( "Code postale incorrect" );
@@ -200,7 +200,7 @@ public class FormulaireCreationClient {
         return erreurs;
     }
 
-    // Ajoute un message correspondant au champ spï¿½cifiï¿½ ï¿½ la map des erreurs.
+    // Ajoute un message correspondant au champ spcifi ˆ la map des erreurs.
     private void setErreur( String champ, String message ) {
         erreurs.put( champ, message );
     }

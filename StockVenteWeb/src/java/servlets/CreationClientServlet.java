@@ -1,4 +1,4 @@
-package servlets;
+package projetTest.servlets;
 
 import java.io.IOException;
 
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Client;
-import formulaires.FormulaireCreationClient;
+import projetTest.beans.Client;
+import projetTest.formulaires.FormulaireCreationClient;
 
 
 
@@ -30,7 +30,7 @@ public class CreationClientServlet extends HttpServlet {
 
         /**
          * Instanciation de la classe FormulaireCreationClient
-         * Puis creation d'un client avec la mÔøΩthode creerClient()
+         * Puis creation d'un client avec la méthode creerClient()
          */
         FormulaireCreationClient formulaireCreationClient = new FormulaireCreationClient();
         Client client = formulaireCreationClient.creerClient( request );
@@ -41,10 +41,10 @@ public class CreationClientServlet extends HttpServlet {
        if ( formulaireCreationClient.getErreurs().isEmpty()  ) {
 
             // Message afficher pour confirmation
-            formulaireCreationClient.setResultat( "Le client est creer avec succÔøΩs" );
+            formulaireCreationClient.setResultat( "Le client est creer avec succès" );
 
             /** 
-             * Mise en paramÔøΩtre du Bean utilisateur dans la reqÔøΩete
+             * Mise en paramètre du Bean utilisateur dans la reqûete
              * Ainsi que du formulaire pour afficher les messages
              */
             request.setAttribute( ATT_BEAN, client );
@@ -55,7 +55,7 @@ public class CreationClientServlet extends HttpServlet {
         }
 
         /*
-         * Si des erreurs sont presente on soumet ÔøΩ nouveau la page
+         * Si des erreurs sont presente on soumet à nouveau la page
          * d'authentification avec les erreurs presente dans le
          * formualireConnexion
          */
@@ -64,7 +64,7 @@ public class CreationClientServlet extends HttpServlet {
             // Message afficher en cas d'erreur
             formulaireCreationClient.setResultat( "Erreur lors de la creation du client" );
 
-        // Mise en paramÔøΩtre du Bean utilisateur dans la reqÔøΩete
+        // Mise en paramètre du Bean utilisateur dans la reqûete
 
         request.setAttribute( ATT_BEAN, client );
         request.setAttribute( ATT_FORMULAIRE, formulaireCreationClient );

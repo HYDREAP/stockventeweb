@@ -1,4 +1,4 @@
-package servlets;
+package projetTest.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.ProduitDAO;
-import beans.RechercheBean;
-import formulaires.FormulaireRechercheProduit;
+import projetTest.beans.ProduitDAO;
+import projetTest.beans.RechercheBean;
+import projetTest.formulaires.FormulaireRechercheProduit;
 
 public class RechercherProduitServlet extends HttpServlet {
 
@@ -25,7 +25,7 @@ public class RechercherProduitServlet extends HttpServlet {
 
         /**
          * Instanciation de la classe FormulaireRecherch Puis recuperation d'une
-         * liste contenant les ï¿½lï¿½ments de la recherche
+         * liste contenant les ŽlŽments de la recherche
          */
         FormulaireRechercheProduit fr = new FormulaireRechercheProduit();
         ArrayList<RechercheBean> liste = fr.recherhcerProduit( request );

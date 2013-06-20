@@ -1,4 +1,4 @@
-package beans;
+package projetTest.beans;
 
 import java.util.Vector;
 
@@ -16,14 +16,15 @@ public class UtilisateurDAO {
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
 
-    public void verificationLoginMdp( String login, String mdp ) throws Exception {
-
+    public Utilisateur verificationLoginMdp( String login, String mdp ) throws Exception {
+        
+        Utilisateur nvx = new Utilisateur();
         Session session = sessionsFactory.openSession();
         Transaction tx = null;
         try {
 
             /*
-             * Recuperation dans une liste des donï¿½es contenue dans la table
+             * Recuperation dans une liste des donŽes contenue dans la table
              * eleve
              */
             tx = session.beginTransaction();
@@ -38,10 +39,11 @@ public class UtilisateurDAO {
                 
             }
 
+            
             else{
             for ( int i = 0; i < result.size(); i++ ) {
 
-                Utilisateur nvx = (Utilisateur) result.get( i );
+                 nvx = (Utilisateur) result.get( i );
 
                 System.out.println( nvx.getNomUser() + " " + nvx.getPrenomUser() );
 
@@ -57,6 +59,8 @@ public class UtilisateurDAO {
             session.close();
         }
         
+        return nvx;
+        
     }
 
     public void listeUtilisateur() throws Exception {
@@ -66,7 +70,7 @@ public class UtilisateurDAO {
         try {
 
             /*
-             * Recuperation dans une liste des donï¿½es contenue dans la table
+             * Recuperation dans une liste des donŽes contenue dans la table
              * eleve
              */
             tx = session.beginTransaction();

@@ -29,6 +29,11 @@
 		<servlet-name>RechercheClient</servlet-name>
 		<servlet-class>projetTest.servlets.RechercherClientServlet</servlet-class>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>TestServlet</servlet-name>
+		<servlet-class>projetTest.servlets.TestServlet</servlet-class>
+	</servlet>
 
 
 
@@ -57,6 +62,11 @@
 	<servlet-mapping>
 		<servlet-name>RechercheClient</servlet-name>
 		<url-pattern>/rechercheClient</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>TestServlet</servlet-name>
+		<url-pattern>/test</url-pattern>
 	</servlet-mapping>
 
 

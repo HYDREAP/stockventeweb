@@ -12,7 +12,9 @@
 <body>
 
 	 <%-- Appel de l'objet Utilisateur en session avec l'objet implicite sessionScope --%>
-                    <p class="succes">Bonjours: ${sessionScope.sessionUtilisateur.loginUser}</p>
+                    <p class="succes">Bonjours: ${sessionScope.sessionUtilisateur.loginUser}</p></br>
+                    <p> ${sessionScope.sessionUtilisateur.idUser } </br>
+                     ${utilisateur.nomUser }</p>
                
 
 </body>

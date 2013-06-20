@@ -1,4 +1,4 @@
-package formulaires;
+package projetTest.formulaires;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,10 +6,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import beans.Client;
-import beans.ClientDAO;
-import beans.ProduitDAO;
-import beans.RechercheBean;
+import projetTest.beans.Client;
+import projetTest.beans.ClientDAO;
+import projetTest.beans.ProduitDAO;
+import projetTest.beans.RechercheBean;
 
 public class FormulaireRechercheClient {
 
@@ -29,7 +29,7 @@ public class FormulaireRechercheClient {
     public  ArrayList<Client> rechercherClient(HttpServletRequest request){
         
         /**
-         * Recuperation des parametres (menu dï¿½roulant, champ texte)
+         * Recuperation des parametres (menu dŽroulant, champ texte)
          */
         String critere = request.getParameter( CHAMP_CRITERE );
         String champtexte = request.getParameter( CHAMP_TEXTE );  
