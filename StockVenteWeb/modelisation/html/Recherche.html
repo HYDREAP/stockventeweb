@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <link rel="stylesheet" href="style.css">
+    <title>StockVente - Menu Principal - Magasin de Albuquerque </title>
+  </head>
+  <body>
+    <div class="barreUser">
+      <div style="width: 70%">Utilisateur: NOM_UTILISATEUR - POSTE_UTILISATEUR </div>
+      <div style="width: 30%"><a id="deco" title="deconnexion" class="deconnecte"
+          href="%3Cdeconexion%3E">Déconnexion X</a></div>
+    </div>
+    <form method="POST" action="" name="frmRecherche"><br>
+      <table class="tabRecherche" style="width: 100%" border="0">
+        <tbody>
+          <tr>
+            <td>Recherche<br>
+              <table border="0">
+                <tbody>
+                  <tr>
+                    <td style="width: 60%;"><input name="txtRecherche" autofocus="autofocus"
+                        size="150" type="text"><br>
+                    </td>
+                    <td style="width: 40%;"><button class="myButton" value="Recherche"
+                        formmethod="post" form="frmRecherche" name="btnRecherche">Recherche</button>
+                      <br>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <br>
+              <input form="frmRecherche" value="Tout" name="radOption" checked="checked"
+                type="radio">Tout&nbsp; <input value="Commande" form="frmRecherche"
+                name="radOption" type="radio">Commande&nbsp;&nbsp;&nbsp; <input
+                form="frmRecherche" value="Commande" name="radOption" type="radio">Commande&nbsp;
+              <input form="frmRecherche" value="Produit" name="radOption" type="radio">Produit&nbsp;
+              <input form="frmRecherche" value="Fournisseur" name="radOption" type="radio">Fournisseur&nbsp;
+              <br> <br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+    </form>
+    Attention au niveau des produits suivants :<br>
+    <br>
+    <div class="tabAppro">
+      <table style="width: 100%;">
+        <tbody>
+          <tr>
+            <td style="width: 10%;">Référence<br>
+            </td>
+            <td style="width: 70%;">Produit<br>
+            </td>
+            <td style="width: 10%;">Emplacement<br>
+            </td>
+            <td style="width: 10%;">Quantité</td>
+          </tr>
+          <tr>
+            <td>&lt;reférence1&gt;<br>
+            </td>
+            <td>&lt;produit1&gt;<br>
+            </td>
+            <td>&lt;Emplacement 1&gt;<br>
+            </td>
+            <td>&lt;Quantité1&gt;<br>
+            </td>
+          </tr>
+          <tr>
+            <td>&lt;reférence2&gt;<br>
+            </td>
+            <td>&lt;produit2&gt;<br>
+            </td>
+            <td>&lt;Emplacement 2&gt;<br>
+            </td>
+            <td>&lt;Quantité2&gt;<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="background-color: #eeeeee;"><br>
+    </p>
+  </body>
+</html>
